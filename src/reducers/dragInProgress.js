@@ -1,3 +1,4 @@
-export default (state, { value }) => ({
-  dragInProgress: value
+export default (state, { value, draggedThoughtsRanked }) => ({
+  dragInProgress: value,
+  draggedThoughtsRanked
 })

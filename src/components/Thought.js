@@ -27,6 +27,7 @@ import ThoughtAnnotation from './ThoughtAnnotation'
 // constants
 import {
   MAX_DISTANCE_FROM_CURSOR,
+  TIMEOUT_BEFORE_DRAG
 } from '../constants'
 
 // util
@@ -38,6 +39,7 @@ import {
   ellipsize,
   equalArrays,
   equalPath,
+  equalThoughtsRanked,
   getNextRank,
   getRankBefore,
   getSortPreference,
@@ -73,6 +75,9 @@ const mapStateToProps = (state, props) => {
     cursor,
     cursorOffset,
     cursorBeforeEdit,
+    dragInProgress,
+    draggedThoughtsRanked,
+    dragTimeoutId,
     expanded,
     expandedContextThought,
     search,
@@ -134,7 +139,10 @@ const mapStateToProps = (state, props) => {
     contextBinding,
     cursorOffset,
     distance,
-    isPublishChild: !search && publishMode() && thoughtsRanked.length === 2,
+    isPublishChild: !search && publish && thoughtsRanked.length === 2,
+    dragInProgress,
+    draggedThoughtsRanked,
+    dragTimeoutId,
     isCursorParent,
     isCursorGrandparent,
     expanded: expanded[hashContext(thoughtsResolved)],
@@ -146,7 +154,8 @@ const mapStateToProps = (state, props) => {
     thought,
     thoughtsRankedLive,
     view: attribute(thoughtsRankedLive, '=view'),
-    url,
+    viewContext: attribute(contextOf(thoughtsRankedLive), '=view'),
+    url
   }
 }
 
@@ -170,7 +179,7 @@ const canDrag = props => {
 
 const beginDrag = props => {
 
-  store.dispatch({ type: 'dragInProgress', value: true })
+  store.dispatch({ type: 'dragInProgress', value: true, draggedThoughtsRanked: props.thoughtsRankedLive })
 
   // disable hold-and-select on mobile
   if (isMobile) {
@@ -352,6 +361,9 @@ const ThoughtContainer = ({
   distance,
   dragPreview,
   dragSource,
+  dragInProgress = false,
+  draggedThoughtsRanked,
+  dragTimeoutId = 0,
   dropTarget,
   expanded,
   expandedContextThought,
@@ -374,6 +386,7 @@ const ThoughtContainer = ({
   thoughtsRankedLive,
   url,
   view,
+  viewContext
 }) => {
 
   // resolve thoughts that are part of a context chain (i.e. some parts of thoughts expanded in context view) to match against cursor subset
@@ -416,7 +429,7 @@ const ThoughtContainer = ({
     'cursor-parent': isCursorParent,
     'cursor-grandparent': isCursorGrandparent,
     'code-view': isCodeView,
-    dragging: isDragging,
+    dragging: dragInProgress && equalThoughtsRanked(draggedThoughtsRanked, thoughtsRanked),
     // used so that the autofocus can properly highlight the immediate parent of the cursor
     editing: isEditing,
     expanded,

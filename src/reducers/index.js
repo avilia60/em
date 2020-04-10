@@ -8,6 +8,7 @@ import cursorHistory from './cursorHistory'
 import deleteData from './deleteData'
 import deleteSubthoughts from './deleteSubthoughts'
 import dragInProgress from './dragInProgress'
+import dragTimeoutId from './dragTimeoutId'
 import editing from './editing'
 import error from './error'
 import existingThoughtChange from './existingThoughtChange'
@@ -56,6 +57,7 @@ export default (state = initialState(), action) => {
     deleteData,
     deleteSubthoughts,
     dragInProgress,
+    dragTimeoutId,
     editing,
     error,
     existingThoughtChange,

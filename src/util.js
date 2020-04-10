@@ -27,6 +27,7 @@ import { ellipsizeUrl } from './util/ellipsizeUrl'
 import { equalArrays } from './util/equalArrays'
 import { equalPath } from './util/equalPath'
 import { equalThoughtRanked } from './util/equalThoughtRanked'
+import { equalThoughtsRanked } from './util/equalThoughtsRanked'
 import { equalThoughtSorted } from './util/equalThoughtSorted'
 import { equalThoughtValue } from './util/equalThoughtValue'
 import { escapeRegExp } from './util/escapeRegExp'
@@ -160,6 +161,7 @@ export {
   equalArrays,
   equalPath,
   equalThoughtRanked,
+  equalThoughtsRanked,
   equalThoughtSorted,
   equalThoughtValue,
   escapeRegExp,
