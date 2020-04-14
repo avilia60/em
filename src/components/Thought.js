@@ -80,7 +80,6 @@ const mapStateToProps = (state, props) => {
     cursorBeforeEdit,
     dragInProgress,
     draggedThoughtsRanked,
-    dragTimeoutId,
     expanded,
     expandedContextThought,
     search,
@@ -145,7 +144,6 @@ const mapStateToProps = (state, props) => {
     isPublishChild: !search && publish && thoughtsRanked.length === 2,
     dragInProgress,
     draggedThoughtsRanked,
-    dragTimeoutId,
     isCursorParent,
     isCursorGrandparent,
     expanded: expanded[hashContext(thoughtsResolved)],
@@ -201,8 +199,8 @@ const endDrag = () => {
     }
     // reset dragInProgress after a delay to prevent cursor from moving
     store.dispatch({ type: 'dragInProgress', value: false })
-    alert(null)
   })
+  alert(null)
 }
 
 const dragCollect = (connect, monitor) => ({
