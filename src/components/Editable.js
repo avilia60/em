@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useEffect, useRef } from 'react'
-=======
 import React, { useRef, useEffect, useState } from 'react'
->>>>>>> Fixed drag-and-drop lightblue on mobile
 import { connect } from 'react-redux'
 import he from 'he'
 import classNames from 'classnames'
@@ -33,9 +29,13 @@ import {
 <<<<<<< HEAD
 =======
   TUTORIAL_CONTEXT,
+<<<<<<< HEAD
   EDIT_THROTTLE,
   TIMEOUT_BEFORE_DRAG
 >>>>>>> Fixed drag-and-drop lightblue on mobile
+=======
+  EDIT_THROTTLE
+>>>>>>> Replaced with useLongPress
 } from '../constants'
 
 import {
@@ -85,11 +85,7 @@ const stopPropagation = e => e.stopPropagation()
 */
 // use rank instead of headRank(thoughtsRanked) as it will be different for context view
 const Editable = ({ disabled, isEditing, thoughtsRanked, contextChain, cursorOffset, showContexts, rank, dispatch }) => {
-  const [mobileDragTimeoutId, setMobileDragTimeoutId] = useState(0)
-  const [mobileDisableContentEditable, setMobileDisableContentEditable] = useState(false)
-  useEffect(() => () => {
-    clearTimeout(mobileDragTimeoutId)
-  })
+  const [disableTextSelection, setDisableTextSelection] = useState(false)
   const thoughts = pathToContext(thoughtsRanked)
   const thoughtsResolved = contextChain.length ? chain(contextChain, thoughtsRanked) : thoughtsRanked
   const value = head(showContexts ? contextOf(thoughts) : thoughts) || ''
@@ -377,16 +373,11 @@ const Editable = ({ disabled, isEditing, thoughtsRanked, contextChain, cursorOff
   }
 
   const onTouchStart = e => {
-    const timeoutId = setTimeout(() => {
-      setMobileDisableContentEditable(true)
-    }, TIMEOUT_BEFORE_DRAG)
-    setMobileDragTimeoutId(timeoutId)
+    setDisableTextSelection(true)
   }
 
   const onTouchEnd = e => {
-    clearTimeout(mobileDragTimeoutId)
-    setMobileDragTimeoutId(0)
-    setMobileDisableContentEditable(false)
+    setDisableTextSelection(false)
     const state = store.getState()
     showContexts = showContexts || isContextViewActive(thoughtsRanked, { state })
 
@@ -408,12 +399,14 @@ const Editable = ({ disabled, isEditing, thoughtsRanked, contextChain, cursorOff
     }
   }
 
+  useEffect(() => () => setCursorOnThought())
+
   return <ContentEditable
-    disabled={disabled || (isMobile && mobileDisableContentEditable)}
+    disabled={disabled || (isMobile && disableTextSelection)}
     innerRef={contentRef}
     className={classNames({
       editable: true,
-      noselect: isMobile && mobileDisableContentEditable,
+      noselect: isMobile && disableTextSelection,
       ['editable-' + hashContext(thoughtsResolved, rank)]: true,
       empty: value.length === 0
     })}
