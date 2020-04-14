@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useEffect, useRef } from 'react'
+=======
+import React, { useRef, useEffect, useState } from 'react'
+>>>>>>> Fixed drag-and-drop lightblue on mobile
 import { connect } from 'react-redux'
 import he from 'he'
 import classNames from 'classnames'
@@ -26,6 +30,12 @@ import {
   TUTORIAL_CONTEXT,
   TUTORIAL_CONTEXT1_PARENT,
   TUTORIAL_CONTEXT2_PARENT,
+<<<<<<< HEAD
+=======
+  TUTORIAL_CONTEXT,
+  EDIT_THROTTLE,
+  TIMEOUT_BEFORE_DRAG
+>>>>>>> Fixed drag-and-drop lightblue on mobile
 } from '../constants'
 
 import {
@@ -74,7 +84,12 @@ const stopPropagation = e => e.stopPropagation()
   @contexts indicates that the thought is a context rendered as a child, and thus needs to be displayed as the context while maintaining the correct thoughts path
 */
 // use rank instead of headRank(thoughtsRanked) as it will be different for context view
-const Editable = ({ disabled, isEditing, thoughtsRanked, contextChain, cursorOffset, showContexts, rank, style, dispatch }) => {
+const Editable = ({ disabled, isEditing, thoughtsRanked, contextChain, cursorOffset, showContexts, rank, dispatch }) => {
+  const [mobileDragTimeoutId, setMobileDragTimeoutId] = useState(0)
+  const [mobileDisableContentEditable, setMobileDisableContentEditable] = useState(false)
+  useEffect(() => () => {
+    clearTimeout(mobileDragTimeoutId)
+  })
   const thoughts = pathToContext(thoughtsRanked)
   const thoughtsResolved = contextChain.length ? chain(contextChain, thoughtsRanked) : thoughtsRanked
   const value = head(showContexts ? contextOf(thoughts) : thoughts) || ''
@@ -361,9 +376,18 @@ const Editable = ({ disabled, isEditing, thoughtsRanked, contextChain, cursorOff
     e.stopPropagation()
   }
 
-  const onTouchEnd = e => {
-    const state = store.getState()
+  const onTouchStart = e => {
+    const timeoutId = setTimeout(() => {
+      setMobileDisableContentEditable(true)
+    }, TIMEOUT_BEFORE_DRAG)
+    setMobileDragTimeoutId(timeoutId)
+  }
 
+  const onTouchEnd = e => {
+    clearTimeout(mobileDragTimeoutId)
+    setMobileDragTimeoutId(0)
+    setMobileDisableContentEditable(false)
+    const state = store.getState()
     showContexts = showContexts || isContextViewActive(thoughtsRanked, { state })
 
     if (
@@ -385,10 +409,11 @@ const Editable = ({ disabled, isEditing, thoughtsRanked, contextChain, cursorOff
   }
 
   return <ContentEditable
-    disabled={disabled}
+    disabled={disabled || (isMobile && mobileDisableContentEditable)}
     innerRef={contentRef}
     className={classNames({
       editable: true,
+      noselect: isMobile && mobileDisableContentEditable,
       ['editable-' + hashContext(thoughtsResolved, rank)]: true,
       empty: value.length === 0
     })}
@@ -402,6 +427,7 @@ const Editable = ({ disabled, isEditing, thoughtsRanked, contextChain, cursorOff
     : thought && new Date() - new Date(thought.lastUpdated) > EMPTY_THOUGHT_TIMEOUT ? 'This is an empty thought'
     : 'Add a thought'}
     // stop propagation to prevent default content onClick (which removes the cursor)
+    onTouchStart={onTouchStart}
     onClick={stopPropagation}
     onTouchEnd={onTouchEnd}
     onMouseDown={onMouseDown}
