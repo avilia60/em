@@ -1,4 +1,4 @@
 export default (state, { value, draggedThoughtsRanked }) => ({
   dragInProgress: value,
-  draggedThoughtsRanked
+  draggedThoughtsRanked: state.draggedThoughtsRanked ? (!draggedThoughtsRanked ? draggedThoughtsRanked : state.draggedThoughtsRanked) : draggedThoughtsRanked
 })

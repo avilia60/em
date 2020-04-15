@@ -165,7 +165,6 @@ const mapStateToProps = (state, props) => {
  **********************************************************************/
 
 const canDrag = props => {
-
   const thoughtMeta = meta(pathToContext(props.thoughtsRankedLive))
   const contextMeta = meta(contextOf(pathToContext(props.thoughtsRankedLive)))
   const isDraggable = props.isDraggable || props.isCursorParent
@@ -179,9 +178,6 @@ const canDrag = props => {
 }
 
 const beginDrag = props => {
-
-  store.dispatch({ type: 'dragInProgress', value: true, draggedThoughtsRanked: props.thoughtsRankedLive })
-
   // disable hold-and-select on mobile
   if (isMobile) {
     setTimeout(() => {
@@ -390,8 +386,10 @@ const ThoughtContainer = ({
   viewContext
 }) => {
   const onLongPressStart = () => {
-    store.dispatch({ type: 'dragInProgress', value: true, draggedThoughtsRanked: thoughtsRankedLive })
-    alert('Drag and drop to move thought', { showCloseLink: false })
+    if (!dragInProgress) {
+      store.dispatch({ type: 'dragInProgress', value: true, draggedThoughtsRanked: thoughtsRankedLive })
+      alert('Drag and drop to move thought', { showCloseLink: false })
+    }
   }
 
   const onLongPressEnd = () => {
@@ -399,7 +397,7 @@ const ThoughtContainer = ({
     alert(null)
   }
 
-  const longPressHandlerProps = useLongPress(onLongPressStart, onLongPressEnd, TIMEOUT_BEFORE_DRAG)
+  const longPressHandlerProps = useLongPress(onLongPressStart, onLongPressEnd, TIMEOUT_BEFORE_DRAG, dragInProgress)
 
   // resolve thoughts that are part of a context chain (i.e. some parts of thoughts expanded in context view) to match against cursor subset
   const thoughtsResolved = contextChain && contextChain.length > 0
