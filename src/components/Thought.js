@@ -386,10 +386,8 @@ const ThoughtContainer = ({
   viewContext
 }) => {
   const onLongPressStart = () => {
-    if (!dragInProgress) {
-      store.dispatch({ type: 'dragInProgress', value: true, draggedThoughtsRanked: thoughtsRankedLive })
-      alert('Drag and drop to move thought', { showCloseLink: false })
-    }
+    store.dispatch({ type: 'dragInProgress', value: true, draggedThoughtsRanked: thoughtsRankedLive })
+    alert('Drag and drop to move thought', { showCloseLink: false })
   }
 
   const onLongPressEnd = () => {
