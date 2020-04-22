@@ -184,6 +184,7 @@ const beginDrag = props => {
       document.getSelection().removeAllRanges()
     })
   }
+  store.dispatch({ type: 'dragInProgress', value: true, draggedThoughtsRanked: props.thoughtsRankedLive })
   return { thoughtsRanked: props.thoughtsRankedLive }
 }
 
@@ -195,8 +196,8 @@ const endDrag = () => {
     }
     // reset dragInProgress after a delay to prevent cursor from moving
     store.dispatch({ type: 'dragInProgress', value: false })
+    alert(null)
   })
-  alert(null)
 }
 
 const dragCollect = (connect, monitor) => ({
