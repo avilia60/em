@@ -7,6 +7,7 @@ import cursorBeforeSearch from './cursorBeforeSearch'
 import cursorHistory from './cursorHistory'
 import deleteData from './deleteData'
 import deleteSubthoughts from './deleteSubthoughts'
+import dragHold from './dragHold'
 import dragInProgress from './dragInProgress'
 import editing from './editing'
 import error from './error'
@@ -55,6 +56,7 @@ export default (state = initialState(), action) => {
     cursorHistory,
     deleteData,
     deleteSubthoughts,
+    dragHold,
     dragInProgress,
     editing,
     error,

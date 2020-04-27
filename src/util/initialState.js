@@ -51,6 +51,23 @@ export const initialState = () => {
     contextIndex: {
       [hashContext([ROOT_TOKEN])]: [],
     },
+
+    // thoughts under dragHold or dragInProgress
+    draggedThoughtsRanked: [],
+
+    // click and hold before mouse move. May lead to a drag, or may get cancelled.
+    dragHold: false,
+
+    // drag initiated and mouse moved
+    dragInProgress: false,
+
+    /*
+      Indicates which contexts are expanded
+      e.g. {
+        [hashContext(context)]: true,
+        ...
+      }
+    */
     expanded: {},
 
     // toolbar

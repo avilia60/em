@@ -13,6 +13,7 @@ import expandContextThought from '../action-creators/expandContextThought'
 
 // components
 import Bullet from './Bullet'
+import BulletOverlay from './BulletOverlay'
 import Byline from './Byline'
 import Code from './Code'
 import ContextBreadcrumbs from './ContextBreadcrumbs'
@@ -42,7 +43,6 @@ import {
   ellipsize,
   equalArrays,
   equalPath,
-  equalThoughtsRanked,
   getNextRank,
   getRankBefore,
   getSortPreference,
@@ -318,7 +318,7 @@ const Thought = ({
 
   return <div className='thought' style={homeContext ? { height: '1em', marginLeft: 8 } : null}>
 
-    {(!publish || (!isRoot && !isRootChildLeaf)) && !hideBullet && <span className='bullet-cursor-overlay'>•</span>}
+    {(!publish || (!isRoot && !isRootChildLeaf)) && !hideBullet && <BulletOverlay thoughtsRanked={thoughtsRanked} />}
 
     {showContextBreadcrumbs ? <ContextBreadcrumbs thoughtsRanked={contextOf(contextOf(thoughtsRanked))} showContexts={showContexts} />
     : showContexts && thoughtsRanked.length > 2 ? <span className='ellipsis'><a tabIndex='-1'/* TODO: Add setting to enable tabIndex for accessibility */ onClick={() => {
@@ -386,13 +386,14 @@ const ThoughtContainer = ({
   view,
   viewContext
 }) => {
+
   const onLongPressStart = () => {
-    store.dispatch({ type: 'dragInProgress', value: true, draggedThoughtsRanked: thoughtsRankedLive })
-    alert('Drag and drop to move thought', { showCloseLink: false })
+    store.dispatch({ type: 'dragHold', value: true, draggedThoughtsRanked: thoughtsRankedLive })
+    alert('Drag to move thought', { showCloseLink: false })
   }
 
   const onLongPressEnd = () => {
-    store.dispatch({ type: 'dragInProgress', value: false })
+    store.dispatch({ type: 'dragHold', value: false })
     alert(null)
   }
 
@@ -438,7 +439,6 @@ const ThoughtContainer = ({
     'cursor-parent': isCursorParent,
     'cursor-grandparent': isCursorGrandparent,
     'code-view': isCodeView,
-    dragging: dragInProgress && equalThoughtsRanked(draggedThoughtsRanked, thoughtsRanked),
     // used so that the autofocus can properly highlight the immediate parent of the cursor
     editing: isEditing,
     expanded,

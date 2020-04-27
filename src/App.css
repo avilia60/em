@@ -965,6 +965,11 @@ h1 .num-contexts {
   margin-left: -12px;
 }
 
+.thought .bullet-cursor-overlay.dragging {
+  color: lightblue !important;
+  opacity: 1 !important;
+}
+
 .mobile .child > .thought-container > .bullet.show-contexts {
   margin-right: -1.5px;
 }
@@ -1109,8 +1114,7 @@ h1 .num-contexts {
 .android .thought .bullet-cursor-overlay {
   display: none;
 }
-.android .child.editing > .thought-container > .thought .bullet-cursor-overlay,
-.android .child.dragging > .thought-container > .thought .bullet-cursor-overlay {
+.android .child.editing > .thought-container > .thought .bullet-cursor-overlay {
   display: inline;
   position: absolute;
   opacity: 0.2;
@@ -1120,24 +1124,15 @@ h1 .num-contexts {
   font-size: 67px;
 }
 
-/* overlay bullet for drag */
-/* specificity to beat ".dark .child.editing > .thought .bullet-cursor-overlay" */
-.android .child.child.child.dragging > .thought-container > .thought .bullet-cursor-overlay {
-  color: lightblue;
-  opacity: 1;
-}
-
 /* Our Awesome first child (overlay) independent with its own properties */
-.android .child.editing:first-of-type > .thought-container > .thought .bullet-cursor-overlay,
-.android .child.dragging:first-of-type > .thought-container > .thought .bullet-cursor-overlay {
+.android .child.editing:first-of-type > .thought-container > .thought .bullet-cursor-overlay {
   margin-top: 8.11px;
   left: -37px;
   top: -34px;
   font-size: 70px;
 }
 
-.android .child.show-contexts.editing:first-of-type > .thought-container > .thought .bullet-cursor-overlay,
-.android .child.show-contexts.dragging:first-of-type > .thought-container > .thought .bullet-cursor-overlay {
+.android .child.show-contexts.editing:first-of-type > .thought-container > .thought .bullet-cursor-overlay {
   margin-top: calc(0.18em - 4px); /* */
 }
 
@@ -1258,8 +1253,7 @@ h1 .num-contexts {
 .android .thought .bullet-cursor-overlay {
   display: none;
 }
-.android .child.editing > .thought-container > .thought .bullet-cursor-overlay,
-.android .child.dragging > .thought-container > .thought .bullet-cursor-overlay {
+.android .child.editing > .thought-container > .thought .bullet-cursor-overlay {
   display: inline;
   position: absolute;
   top: -0.38em;
@@ -1271,24 +1265,15 @@ h1 .num-contexts {
   margin-top: 0.08em;
 }
 
-/* overlay bullet for drag */
-/* specificity to beat ".dark .child.editing > .thought-container > .thought .bullet-cursor-overlay" */
-.android .child.child.child.dragging > .thought-container > .thought .bullet-cursor-overlay {
-  color: lightblue;
-  opacity: 1;
-}
-
 /* Our Awesome first child (overlay) independent with its own properties */
-.android .child.editing:first-of-type > .thought-container > .thought .bullet-cursor-overlay,
-.android .child.dragging:first-of-type > .thought-container > .thought .bullet-cursor-overlay {
+.android .child.editing:first-of-type > .thought-container > .thought .bullet-cursor-overlay {
   margin-top: 9.11px;
   left: -25px;
   top: -20px;
   font-size: 46px;
 }
 
-.android .child.show-contexts.editing:first-of-type > .thought-container > .thought .bullet-cursor-overlay,
-.android .child.show-contexts.dragging:first-of-type > .thought-container > .thought .bullet-cursor-overlay {
+.android .child.show-contexts.editing:first-of-type > .thought-container > .thought .bullet-cursor-overlay {
   margin-top: calc(0.18em - 4px); /* */
 }
 
@@ -1367,8 +1352,7 @@ h1 .num-contexts {
   display: none;
 }
 
-.child.editing > .thought-container > .thought .bullet-cursor-overlay,
-.child.dragging > .thought-container > .thought .bullet-cursor-overlay {
+.child.editing > .thought-container > .thought .bullet-cursor-overlay {
   display: inline;
   position: absolute;
   top: -0.38em;
@@ -1380,20 +1364,11 @@ h1 .num-contexts {
   margin-top: 0.08em;
 }
 
-/* overlay bullet for drag */
-/* specificity to beat ".dark .child.editing > .thought-container > .thought .bullet-cursor-overlay" */
-.child.child.child.dragging > .thought-container > .thought .bullet-cursor-overlay {
-  color: lightblue;
-  opacity: 1;
-}
-
-.child.editing:first-of-type > .thought-container > .thought .bullet-cursor-overlay,
-.child.dragging:first-of-type > .thought-container > .thought .bullet-cursor-overlay {
+.child.editing:first-of-type > .thought-container > .thought .bullet-cursor-overlay {
   margin-top: 0.18em;
 }
 
-.child.show-contexts.editing:first-of-type > .thought-container > .thought .bullet-cursor-overlay,
-.child.show-contexts.dragging:first-of-type > .thought-container > .thought .bullet-cursor-overlay {
+.child.show-contexts.editing:first-of-type > .thought-container > .thought .bullet-cursor-overlay {
   margin-top: calc(0.18em - 4px); /* */
 }
 
@@ -1970,10 +1945,6 @@ code, .code {
 .mobile.drag-in-progress * {
   -webkit-user-select: none;
   user-select: none;
-}
-
-.dragging {
-  color: lightblue;
 }
 
 /* the bar that displays on hover when moving thoughts */
@@ -2742,7 +2713,6 @@ code, .code {
 }
 
 /* overlay bullet */
-.publish > div > .children > .child .child.editing > .thought-container > .thought .bullet-cursor-overlay,
-.publish > div > .children > .child .child.dragging > .thought-container > .thought .bullet-cursor-overlay {
+.publish > div > .children > .child .child.editing > .thought-container > .thought .bullet-cursor-overlay {
   left: -0.48em;
 }

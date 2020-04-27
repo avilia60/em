@@ -20,15 +20,24 @@ export default function useLongPress(onLongPressStart = () => {}, onLongPressEnd
 
   const start = useCallback(e => {
     setStartLongPress(true)
+
+    // need to stop propagation to avoid firing onLongPressStart on ancestors
+    // but this breaks dragging on mobile
+    // e.stopPropagation()
   }, [])
-  const stop = useCallback(() => {
+
+  const stop = useCallback(e => {
     setStartLongPress(false)
     onLongPressEnd()
     setStartCallbackDispatched(false)
+
+    // need to stop propagation to avoid firing onLongPressEnd on ancestors
+    // but this breaks dragging on mobile
+    // e.stopPropagation()
   }, [])
-  const scroll = useCallback(() => {
-    if (!startCallbackDispatched) setStartLongPress(false)
-    else setStartLongPress(true)
+
+  const scroll = useCallback(e => {
+    setStartLongPress(startCallbackDispatched)
   }, [startCallbackDispatched])
 
   return {
