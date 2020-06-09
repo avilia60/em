@@ -1,6 +1,7 @@
-import { ROOT_TOKEN } from '../../constants'
+import { NOOP, RANKED_ROOT, ROOT_TOKEN } from '../../constants'
 import { initialState, reducerFlow } from '../../util'
-import { exportContext } from '../../selectors'
+import { importText } from '../../action-creators'
+import { exportContext, rankThoughtsFirstMatch } from '../../selectors'
 
 // reducers
 import {
@@ -9,6 +10,8 @@ import {
   deleteThought,
   newThought,
   setCursor,
+  toggleContextView,
+  updateThoughts,
 } from '../../reducers'
 
 it('delete thought within root', () => {
@@ -149,5 +152,38 @@ it('cursor should be removed if the last thought is deleted', () => {
   const stateNew = reducerFlow(steps)(initialState())
 
   expect(stateNew.cursor).toBe(null)
+
+})
+
+describe('context view', () => {
+
+  it('delete thought from context', async () => {
+
+    const text = `- a
+  - m
+    - x
+- b
+  - m`
+
+    const thoughts = await importText(RANKED_ROOT, text)(NOOP, initialState)
+    const steps = [
+      state => updateThoughts(state, thoughts),
+      state => setCursor(state, { thoughtsRanked: rankThoughtsFirstMatch(state, ['a', 'm']) }),
+      toggleContextView,
+      state => setCursor(state, { thoughtsRanked: rankThoughtsFirstMatch(state, ['a', 'm', 'b']) }),
+      deleteThought,
+    ]
+
+    // run steps through reducer flow and export
+    const stateNew = reducerFlow(steps)(initialState())
+    const exported = exportContext(stateNew, [ROOT_TOKEN], 'text/plaintext')
+
+    expect(exported).toBe(`- ${ROOT_TOKEN}
+  - a
+    - m
+      - x
+  - b`)
+
+  })
 
 })
