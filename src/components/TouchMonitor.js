@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module components.TouchMonitor
+ */
+
 import React from 'react'
 import globals from '../globals'
 

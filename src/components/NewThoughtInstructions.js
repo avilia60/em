@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module components.NewThoughtInstructions
+ */
+
 import React from 'react'
 import { connect } from 'react-redux'
 import assert from 'assert'

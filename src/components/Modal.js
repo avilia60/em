@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module components.Modal
+ */
+
 import { connect } from 'react-redux'
 
 // components

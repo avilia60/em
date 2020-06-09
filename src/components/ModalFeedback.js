@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module components.ModalFeedback
+ */
+
 import React from 'react'
 
 // components

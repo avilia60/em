@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module components.SearchIcon
+ */
+
 import React from 'react'
 import { connect } from 'react-redux'
 
