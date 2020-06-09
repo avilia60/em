@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module app.setupTests
+ */
+
 import React from 'react'
 import { act } from 'react-dom/test-utils'
 import Adapter from 'enzyme-adapter-react-16'

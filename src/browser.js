@@ -1,4 +1,9 @@
-/** Defines client/browser-specific variables that do not change over the course of a session. */
+/**
+ * Defines client/browser-specific variables that do not change over the course of a session.
+ *
+ * @packageDocumentation
+ * @module app.browser
+ */
 
 import uuid from 'uuid/v4'
 

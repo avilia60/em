@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module shortcuts.redo
+ */
+
 import RedoIcon from '../components/redoIcon'
 
 export default {

@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module util.isDocumentEditable
+ */
+
 import { owner, urlDataSource } from '../util'
 
 /**

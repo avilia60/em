@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module selectors.canShowModal
+ */
+
 import { store } from '../store'
 
 /**

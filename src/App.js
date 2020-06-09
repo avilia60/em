@@ -1,4 +1,10 @@
-/** All must enter here!!! The entrypoint for the app. */
+/**
+ * All must enter here!!! The entrypoint for the app.
+ *
+ * @packageDocumentation
+ * @module app
+ * @preferred
+ */
 
 import './App.css'
 import { App } from './components/App'

@@ -1,5 +1,9 @@
-// @ts-nocheck
+/**
+ * @packageDocumentation
+ * @module util.isElementInViewport
+ */
 
+// @ts-nocheck
 /** Returns true if the given element is visibly within the viewport. */
 export const isElementInViewport = el => {
   const rect = el.getBoundingClientRect()
