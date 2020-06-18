@@ -1,6 +1,5 @@
 /**
  * @packageDocumentation
- * @module components.ErrorBoundaryContainer
  */
 
 import React from 'react'

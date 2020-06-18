@@ -1,6 +1,5 @@
 /**
  * @packageDocumentation
- * @module app.setupTests
  */
 
 import React from 'react'

@@ -1,6 +1,5 @@
 /**
  * @packageDocumentation
- * @module components.Thought
  */
 
 import React from 'react'

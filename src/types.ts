@@ -1,13 +1,11 @@
 /**
  * @packageDocumentation
- * @module app.types
  */
 
 import { Action } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 import { State } from './util/initialState'
 
-/** @module app.global */
 declare global {
   interface Window {
       firebase:any,

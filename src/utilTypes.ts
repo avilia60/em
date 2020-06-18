@@ -1,6 +1,5 @@
 /**
  * @packageDocumentation
- * @module app.utilTypes
  */
 
 /* Possible return values of a sort's comparator function */

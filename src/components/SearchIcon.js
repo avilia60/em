@@ -1,6 +1,5 @@
 /**
  * @packageDocumentation
- * @module components.SearchIcon
  */
 
 import React from 'react'

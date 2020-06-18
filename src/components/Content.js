@@ -1,6 +1,5 @@
 /**
  * @packageDocumentation
- * @module components.Content
  */
 
 import React, { useMemo, useRef } from 'react'

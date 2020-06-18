@@ -1,6 +1,5 @@
 /**
  * @packageDocumentation
- * @module shortcuts.undo
  */
 
 import UndoIcon from '../components/undoIcon'

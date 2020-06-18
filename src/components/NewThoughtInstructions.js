@@ -1,6 +1,5 @@
 /**
  * @packageDocumentation
- * @module components.NewThoughtInstructions
  */
 
 import React from 'react'

@@ -1,6 +1,5 @@
 /**
  * @packageDocumentation
- * @module util.setSelection
  */
 
 type SelectionOptionsType = {offset: number, end: number}

@@ -1,6 +1,5 @@
 /**
  * @packageDocumentation
- * @module components.SearchSubthoughts
  */
 
 import React from 'react'

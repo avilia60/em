@@ -1,6 +1,5 @@
 /**
  * @packageDocumentation
- * @module components.Scale
  */
 
 import React from 'react'

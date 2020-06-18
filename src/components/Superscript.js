@@ -1,6 +1,5 @@
 /**
  * @packageDocumentation
- * @module components.Superscript
  */
 
 import React from 'react'
