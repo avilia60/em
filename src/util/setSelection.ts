@@ -1,5 +1,4 @@
 /**
- * @packageDocumentation
  */
 
 type SelectionOptionsType = {offset: number, end: number}

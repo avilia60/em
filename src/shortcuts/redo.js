@@ -1,5 +1,4 @@
 /**
- * @packageDocumentation
  */
 
 import RedoIcon from '../components/redoIcon'

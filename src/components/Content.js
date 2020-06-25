@@ -1,5 +1,4 @@
 /**
- * @packageDocumentation
  */
 
 import React, { useMemo, useRef } from 'react'

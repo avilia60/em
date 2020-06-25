@@ -1,5 +1,4 @@
 /**
- * @packageDocumentation
  */
 
 /* Possible return values of a sort's comparator function */

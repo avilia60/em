@@ -1,5 +1,4 @@
 /**
- * @packageDocumentation
  */
 
 import { owner, urlDataSource } from '../util'
