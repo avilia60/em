@@ -67,7 +67,7 @@ const Icon = ({ fill = 'black', size = 20, style }) => <svg version="1.1" classN
   </g>
 </svg>
 
-export default {
+const deleteEmptyThoughtShortcut = {
   id: 'deleteEmptyThought',
   name: 'Delete Empty Thought',
   keyboard: { key: 'Backspace' },
@@ -85,3 +85,5 @@ export const deleteEmptyThoughtAlias = {
   canExecute,
   exec
 }
+
+export default deleteEmptyThoughtShortcut

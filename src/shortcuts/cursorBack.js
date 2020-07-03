@@ -10,7 +10,7 @@ const Icon = ({ fill = 'black', size = 20, style }) => <svg version="1.1" classN
   </g>
 </svg>
 
-export default {
+const cursorBackShortcut = {
   id: 'cursorBack',
   name: 'Back',
   gesture: 'r',
@@ -30,3 +30,5 @@ export default {
     }
   }
 }
+
+export default cursorBackShortcut

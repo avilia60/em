@@ -43,7 +43,7 @@ const ellipsizeContextThoughts = false
 /** Check duplicate ranks within the same context for debugging. React prints a warning, but it does not show which thoughts are colliding. */
 const checkDuplicateRanks = false
 
-export default {
+const globals = {
   checkDuplicateRanks,
   disableThoughtHashing,
   disableTutorial,
@@ -57,3 +57,5 @@ export default {
   touched,
   touching,
 }
+
+export default globals
