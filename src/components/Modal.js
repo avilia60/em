@@ -1,6 +1,3 @@
-/**
- */
-
 import { connect } from 'react-redux'
 
 // components

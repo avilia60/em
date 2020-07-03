@@ -1,6 +1,3 @@
-/**
- */
-
 import React from 'react'
 
 /** Render the local logs in a readonly textarea. */

@@ -1,6 +1,3 @@
-/**
- */
-
 import React from 'react'
 import { isMobile, isSafari } from '../browser'
 import { TUTORIAL_STEP_START } from '../constants'

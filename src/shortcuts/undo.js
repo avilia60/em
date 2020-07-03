@@ -1,6 +1,3 @@
-/**
- */
-
 import UndoIcon from '../components/undoIcon'
 
 export default {

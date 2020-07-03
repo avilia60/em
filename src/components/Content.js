@@ -1,6 +1,3 @@
-/**
- */
-
 import React, { useMemo, useRef } from 'react'
 import { connect } from 'react-redux'
 import classNames from 'classnames'

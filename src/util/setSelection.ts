@@ -1,6 +1,3 @@
-/**
- */
-
 type SelectionOptionsType = {offset: number, end: number}
 
 /** Set the selection to the end of the given element. Inserts empty text node when element has no children.

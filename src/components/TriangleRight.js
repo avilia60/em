@@ -1,6 +1,3 @@
-/**
- */
-
 import React from 'react'
 
 /** A right-facing triangle component. */

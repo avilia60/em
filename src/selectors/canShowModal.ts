@@ -1,6 +1,3 @@
-/**
- */
-
 import { store } from '../store'
 
 /**

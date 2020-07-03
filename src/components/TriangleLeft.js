@@ -1,6 +1,3 @@
-/**
- */
-
 import React from 'react'
 
 /** A left-facing svg triangle. */
