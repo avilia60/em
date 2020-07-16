@@ -4,12 +4,13 @@ import classNames from 'classnames'
 import SplitPane from 'react-split-pane'
 
 import { isAndroid, isMobile } from '../browser'
-import { handleGestureEnd, handleGestureSegment } from '../shortcuts'
+import { inputHandlers } from '../shortcuts'
 import { isDocumentEditable } from '../util'
 import { getSetting, isTutorial } from '../selectors'
 import theme from '../selectors/theme'
 import { State } from '../util/initialState'
 import { updateSplitPosition } from '../action-creators'
+import { store } from '../store'
 
 // components
 import Alert from './Alert'
@@ -29,6 +30,7 @@ import HamburgerMenu from './HamburgerMenu'
 
 const fontSizeLocal = +(localStorage['Settings/Font Size'] || 16)
 const tutorialLocal = localStorage['Settings/Tutorial'] === 'On'
+const { handleGestureEnd, handleGestureSegment } = inputHandlers(store)
 
 interface StateProps {
   dark?: boolean,
@@ -157,7 +159,7 @@ const AppComponent: FC<Props> = props => {
             </SplitPane>
 
             <div className='nav-bottom-wrapper'>
-              <Scale amount={scale!}>
+              <Scale amount={scale!} origin='bottom left'>
 
                 <NavBar position='bottom' />
 

@@ -1,15 +1,18 @@
 // @ts-nocheck
-
 import { store } from '../store'
-import { keyDown, keyUp } from '../shortcuts'
+import { inputHandlers } from '../shortcuts'
 import * as db from '../db'
 import { clearSelection, isRoot, scrollCursorIntoView } from '../util'
+import _ from 'lodash'
 
 // util
 import { decodeThoughtsUrl } from '../selectors'
+import { toggleTopControlsAndBreadcrumbs } from '../action-creators'
 
 /** Initializes global window events. */
 export const initEvents = () => {
+
+  const { keyDown, keyUp } = inputHandlers(store)
   // prevent browser from restoring the scroll position so that we can do it manually
   window.history.scrollRestoration = 'manual'
 
@@ -33,6 +36,8 @@ export const initEvents = () => {
     // scroll cursor into view
     setTimeout(scrollCursorIntoView)
   })
+
+  window.addEventListener('mousemove', _.debounce(() => store.dispatch(toggleTopControlsAndBreadcrumbs(true)), 100, { leading: true }))
 
   // NOTE: This does not catch React errors. See the ErrorFallback component that is used in the error boundary of the App component.
   window.addEventListener('error', e => {

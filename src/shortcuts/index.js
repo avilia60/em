@@ -1,3 +1,5 @@
+/** Here's documentation for all shortcuts. */
+
 export { default as bindContext } from './bindContext'
 export { default as bumpThoughtDown } from './bumpThoughtDown'
 export { default as clearThought } from './clearThought'
@@ -14,6 +16,7 @@ export { default as home } from './home'
 export { default as indent } from './indent'
 export { default as moveCursorBackward } from './moveCursorBackward'
 export { default as moveCursorForward } from './moveCursorForward'
+export { default as newGrandChild } from './newGrandChild'
 export { default as moveThoughtDown } from './moveThoughtDown'
 export { default as moveThoughtUp } from './moveThoughtUp'
 export { default as newSubthought, newSubthoughtAliases } from './newSubthought'
