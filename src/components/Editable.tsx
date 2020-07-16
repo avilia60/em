@@ -473,6 +473,15 @@ const Editable = ({ disabled, isEditing, thoughtsRanked, contextChain, cursorOff
       setCursorOnThought()
     }
   }
+
+  /**
+   * Prevents onKeyDownAction call for shift, alt or ctrl keys.
+   */
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key in MODIFIER_KEYS) return
+    onKeyDownAction()
+  }
+
   return <ContentEditable
     disabled={disabled}
     innerRef={contentRef}
