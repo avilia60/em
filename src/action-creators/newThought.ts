@@ -20,7 +20,7 @@ import {
  */
 const newThought = ({ offset, preventSplit }: { offset: number, preventSplit?: boolean }): ActionCreator => (dispatch, getState) => {
   const state = getState()
-  const { cursor } = state
+  const { cursor, editingValue } = state
 
   const tutorial = getSetting(state, 'Tutorial') !== 'Off'
   const tutorialStep = +!getSetting(state, 'Tutorial Step')
@@ -40,7 +40,7 @@ const newThought = ({ offset, preventSplit }: { offset: number, preventSplit?: b
   // split the thought at the selection
   // do not split at the beginning of a line as the common case is to want to create a new thought after, and shift + Enter is so near
   // do not split with gesture, as Enter is avialable and separate in the context of mobile
-  const split = !preventSplit && cursor && isFocusOnEditable && !showContexts && offset > 0 && offset < headValue(cursor).length
+  const split = !preventSplit && cursor && isFocusOnEditable && !showContexts && offset > 0 && editingValue && offset < editingValue.length
 
   if ((!split || !uneditable) && isMobile && isSafari) {
     asyncFocus()
